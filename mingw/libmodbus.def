@@ -1,0 +1,75 @@
+EXPORTS
+    _error_print @1
+    _modbus_init_common @2
+    _modbus_receive_msg @3
+    _modbus_rtu_backend @4 DATA
+    _modbus_tcp_backend @5 DATA
+    _modbus_tcp_pi_backend @6 DATA
+    libmodbus_version_major @7 DATA
+    libmodbus_version_micro @8 DATA
+    libmodbus_version_minor @9 DATA
+    modbus_close @10
+    modbus_connect @11
+    modbus_flush @12
+    modbus_free @13
+    modbus_get_byte_from_bits @14
+    modbus_get_byte_timeout @15
+    modbus_get_float @16
+    modbus_get_float_abcd @17
+    modbus_get_float_badc @18
+    modbus_get_float_cdab @19
+    modbus_get_float_dcba @20
+    modbus_get_header_length @21
+    modbus_get_indication_timeout @22
+    modbus_get_response_timeout @23
+    modbus_get_slave @24
+    modbus_get_socket @25
+    modbus_mapping_free @26
+    modbus_mapping_new @27
+    modbus_mapping_new_start_address @28
+    modbus_mask_write_register @29
+    modbus_new_rtu @30
+    modbus_new_tcp @31
+    modbus_new_tcp_pi @32
+    modbus_read_bits @33
+    modbus_read_input_bits @34
+    modbus_read_input_registers @35
+    modbus_read_registers @36
+    modbus_receive @37
+    modbus_receive_confirmation @38
+    modbus_reply @39
+    modbus_reply_exception @40
+    modbus_report_slave_id @41
+    modbus_rtu_get_rts @42
+    modbus_rtu_get_rts_delay @43
+    modbus_rtu_get_serial_mode @44
+    modbus_rtu_set_custom_rts @45
+    modbus_rtu_set_rts @46
+    modbus_rtu_set_rts_delay @47
+    modbus_rtu_set_serial_mode @48
+    modbus_send_raw_request @49
+    modbus_set_bits_from_byte @50
+    modbus_set_bits_from_bytes @51
+    modbus_set_byte_timeout @52
+    modbus_set_debug @53
+    modbus_set_error_recovery @54
+    modbus_set_float @55
+    modbus_set_float_abcd @56
+    modbus_set_float_badc @57
+    modbus_set_float_cdab @58
+    modbus_set_float_dcba @59
+    modbus_set_indication_timeout @60
+    modbus_set_response_timeout @61
+    modbus_set_slave @62
+    modbus_set_socket @63
+    modbus_strerror @64
+    modbus_tcp_accept @65
+    modbus_tcp_listen @66
+    modbus_tcp_pi_accept @67
+    modbus_tcp_pi_listen @68
+    modbus_write_and_read_registers @69
+    modbus_write_bit @70
+    modbus_write_bits @71
+    modbus_write_register @72
+    modbus_write_registers @73
+    strlcpy @74

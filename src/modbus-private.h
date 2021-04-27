@@ -11,7 +11,7 @@
 # include <stdint.h>
 # include <sys/time.h>
 #else
-# include "stdint.h"
+/* # include "stdint.h" */
 # include <time.h>
 typedef int ssize_t;
 #endif

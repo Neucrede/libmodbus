@@ -59,6 +59,8 @@ dkms.conf
 
 /mingw/obj/*
 /mingw/deps/*
+/mingw/*.def
+
 
 /gnu/obj/*
 /gnu/deps/*

@@ -9,7 +9,7 @@ OBJS = $(addprefix $(OBJDIR)/, $(patsubst %.c, %.o, $(notdir $(SOURCES))))
 DEPS = $(addprefix $(DEPDIR)/, $(patsubst %.c, %.d, $(notdir $(SOURCES))))
 CC = gcc
 CCFLAGS = -Wall -fPIC $(INCDIRS)
-LDFLAGS = --shared -lwsock32 -lws2_32
+LDFLAGS = --shared -Wl,--output-def,libmodbus.def,--out-implib,libmodbus.a -lwsock32 -lws2_32
 
 INCLUDE_DEPS = 0
 

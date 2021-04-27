@@ -23,6 +23,10 @@
 #include <signal.h>
 #include <sys/types.h>
 
+#ifndef UINT16_MAX
+#define UINT16_MAX ((unsigned __int16)(0xFFFF))
+#endif
+
 #if defined(_WIN32)
 /* Already set in modbus-tcp.h but it seems order matters in VS2005 */
 # include <winsock2.h>

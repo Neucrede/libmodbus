@@ -9,7 +9,13 @@
 #ifndef _MSC_VER
 #  include <stdint.h>
 #else
-#  include "stdint.h"
+/* #  include "stdint.h" */
+typedef __int32 int32_t;
+typedef unsigned __int32 uint32_t;
+typedef __int16 int16_t;
+typedef unsigned __int16 uint16_t;
+typedef unsigned char uint8_t;
+typedef char int8_t;
 #endif
 
 #include <string.h>
@@ -55,7 +61,7 @@
 #endif
 
 #if !defined(bswap_16)
-#  warning "Fallback on C functions for bswap_16"
+/* #  warning "Fallback on C functions for bswap_16" */
 static inline uint16_t bswap_16(uint16_t x)
 {
     return (x >> 8) | (x << 8);
@@ -63,7 +69,7 @@ static inline uint16_t bswap_16(uint16_t x)
 #endif
 
 #if !defined(bswap_32)
-#  warning "Fallback on C functions for bswap_32"
+/* #  warning "Fallback on C functions for bswap_32" */
 static inline uint32_t bswap_32(uint32_t x)
 {
     return (bswap_16(x & 0xffff) << 16) | (bswap_16(x >> 16));
