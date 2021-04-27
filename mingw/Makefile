@@ -8,13 +8,18 @@ SOURCES = $(wildcard $(SRCDIR)/*.c)
 OBJS = $(addprefix $(OBJDIR)/, $(patsubst %.c, %.o, $(notdir $(SOURCES))))
 DEPS = $(addprefix $(DEPDIR)/, $(patsubst %.c, %.d, $(notdir $(SOURCES))))
 CC = gcc
-CCFLAGS = -O2 -Wall -fPIC $(INCDIRS)
+CCFLAGS = -Wall -fPIC $(INCDIRS)
 LDFLAGS = --shared -lwsock32 -lws2_32
 
 INCLUDE_DEPS = 0
 
+debug : deps main
+debug : INCLUDE_DEPS = 1
+debug : CCFLAGS += -g
+
 release : deps main
 release : INCLUDE_DEPS = 1
+release : CCFLAGS += -O2
 
 main : $(OUT) $(OUTA)
 
