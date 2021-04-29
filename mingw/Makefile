@@ -13,6 +13,10 @@ LDFLAGS = --shared -Wl,--output-def,libmodbus.def,--out-implib,libmodbus.a -lwso
 
 INCLUDE_DEPS = 0
 
+ifeq ($(HAVE_MODBUS_TCP_PI),1)
+CCFLAGS += -DLIBMODBUS_HAVE_MODBUS_TCP_PI
+endif
+
 debug : deps main
 debug : INCLUDE_DEPS = 1
 debug : CCFLAGS += -g

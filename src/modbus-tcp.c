@@ -8,9 +8,16 @@
 # define OS_WIN32
 /* ws2_32.dll has getaddrinfo and freeaddrinfo on Windows XP and later.
  * minwg32 headers check WINVER before allowing the use of these */
+
+
+#ifdef LIBMODBUS_HAVE_MODBUS_TCP_PI
+
 # ifndef WINVER
 #   define WINVER 0x0501
 # endif
+
+#endif
+
 #endif
 
 #include <stdio.h>
@@ -358,6 +365,7 @@ static int _modbus_tcp_connect(modbus_t *ctx)
 /* Establishes a modbus TCP PI connection with a Modbus server. */
 static int _modbus_tcp_pi_connect(modbus_t *ctx)
 {
+#ifdef LIBMODBUS_HAVE_MODBUS_TCP_PI
     int rc;
     struct addrinfo *ai_list;
     struct addrinfo *ai_ptr;
@@ -431,6 +439,9 @@ static int _modbus_tcp_pi_connect(modbus_t *ctx)
     }
 
     return 0;
+#else
+    return -1;
+#endif
 }
 
 /* Closes the network connection and socket in TCP mode */
@@ -546,6 +557,8 @@ int modbus_tcp_listen(modbus_t *ctx, int nb_connection)
 
 int modbus_tcp_pi_listen(modbus_t *ctx, int nb_connection)
 {
+
+#ifdef LIBMODBUS_HAVE_MODBUS_TCP_PI
     int rc;
     struct addrinfo *ai_list;
     struct addrinfo *ai_ptr;
@@ -658,6 +671,9 @@ int modbus_tcp_pi_listen(modbus_t *ctx, int nb_connection)
     }
 
     return new_s;
+#else
+    return -1;
+#endif
 }
 
 int modbus_tcp_accept(modbus_t *ctx, int *s)
