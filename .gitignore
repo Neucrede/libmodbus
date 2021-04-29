@@ -78,3 +78,6 @@ Thumbs.db
 
 tmp/
 
+/vs6/libmodbus/*
+!/vs6/libmodbus/*.dsw
+!/vs6/libmodbus/*.dsp

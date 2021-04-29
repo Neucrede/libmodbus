@@ -21,6 +21,12 @@
 #include "modbus-version.h"
 
 #if defined(_MSC_VER)
+
+#if defined(VC6_BUILD)
+typedef size_t socklen_t;
+#define inline __inline
+#endif
+
 # if defined(DLLBUILD)
 /* define DLLBUILD when building the DLL */
 #  define MODBUS_API __declspec(dllexport)
