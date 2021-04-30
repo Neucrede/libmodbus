@@ -41,7 +41,7 @@ typedef enum {
     _STEP_DATA
 } _step_t;
 
-const char *modbus_strerror(int errnum) {
+const char* MODBUS_CALL modbus_strerror(int errnum) {
     switch (errnum) {
     case EMBXILFUN:
         return "Illegal function";
@@ -108,7 +108,7 @@ static void _sleep_response_timeout(modbus_t *ctx)
 #endif
 }
 
-int modbus_flush(modbus_t *ctx)
+int MODBUS_CALL modbus_flush(modbus_t *ctx)
 {
     int rc;
 
@@ -207,7 +207,7 @@ static int send_msg(modbus_t *ctx, uint8_t *msg, int msg_length)
     return rc;
 }
 
-int modbus_send_raw_request(modbus_t *ctx, const uint8_t *raw_req, int raw_req_length)
+int MODBUS_CALL modbus_send_raw_request(modbus_t *ctx, const uint8_t *raw_req, int raw_req_length)
 {
     sft_t sft;
     uint8_t req[MAX_MESSAGE_LENGTH];
@@ -480,7 +480,7 @@ int _modbus_receive_msg(modbus_t *ctx, uint8_t *msg, msg_type_t msg_type)
 }
 
 /* Receive the request from a modbus master */
-int modbus_receive(modbus_t *ctx, uint8_t *req)
+int MODBUS_CALL modbus_receive(modbus_t *ctx, uint8_t *req)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -498,7 +498,7 @@ int modbus_receive(modbus_t *ctx, uint8_t *req)
    The function doesn't check the confirmation is the expected response to the
    initial request.
 */
-int modbus_receive_confirmation(modbus_t *ctx, uint8_t *rsp)
+int MODBUS_CALL modbus_receive_confirmation(modbus_t *ctx, uint8_t *rsp)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -702,7 +702,7 @@ static int response_exception(modbus_t *ctx, sft_t *sft,
    If an error occurs, this function construct the response
    accordingly.
 */
-int modbus_reply(modbus_t *ctx, const uint8_t *req,
+int MODBUS_CALL modbus_reply(modbus_t *ctx, const uint8_t *req,
                  int req_length, modbus_mapping_t *mb_mapping)
 {
     int offset;
@@ -1002,7 +1002,7 @@ int modbus_reply(modbus_t *ctx, const uint8_t *req,
             slave == MODBUS_BROADCAST_ADDRESS) ? 0 : send_msg(ctx, rsp, rsp_length);
 }
 
-int modbus_reply_exception(modbus_t *ctx, const uint8_t *req,
+int MODBUS_CALL modbus_reply_exception(modbus_t *ctx, const uint8_t *req,
                            unsigned int exception_code)
 {
     int offset;
@@ -1083,7 +1083,7 @@ static int read_io_status(modbus_t *ctx, int function,
 
 /* Reads the boolean status of bits and sets the array elements
    in the destination to TRUE or FALSE (single bits). */
-int modbus_read_bits(modbus_t *ctx, int addr, int nb, uint8_t *dest)
+int MODBUS_CALL modbus_read_bits(modbus_t *ctx, int addr, int nb, uint8_t *dest)
 {
     int rc;
 
@@ -1112,7 +1112,7 @@ int modbus_read_bits(modbus_t *ctx, int addr, int nb, uint8_t *dest)
 
 
 /* Same as modbus_read_bits but reads the remote device input table */
-int modbus_read_input_bits(modbus_t *ctx, int addr, int nb, uint8_t *dest)
+int MODBUS_CALL modbus_read_input_bits(modbus_t *ctx, int addr, int nb, uint8_t *dest)
 {
     int rc;
 
@@ -1187,7 +1187,7 @@ static int read_registers(modbus_t *ctx, int function, int addr, int nb,
 
 /* Reads the holding registers of remote device and put the data into an
    array */
-int modbus_read_registers(modbus_t *ctx, int addr, int nb, uint16_t *dest)
+int MODBUS_CALL modbus_read_registers(modbus_t *ctx, int addr, int nb, uint16_t *dest)
 {
     int status;
 
@@ -1212,7 +1212,7 @@ int modbus_read_registers(modbus_t *ctx, int addr, int nb, uint16_t *dest)
 }
 
 /* Reads the input registers of remote device and put the data into an array */
-int modbus_read_input_registers(modbus_t *ctx, int addr, int nb,
+int MODBUS_CALL modbus_read_input_registers(modbus_t *ctx, int addr, int nb,
                                 uint16_t *dest)
 {
     int status;
@@ -1267,7 +1267,7 @@ static int write_single(modbus_t *ctx, int function, int addr, const uint16_t va
 }
 
 /* Turns ON or OFF a single bit of the remote device */
-int modbus_write_bit(modbus_t *ctx, int addr, int status)
+int MODBUS_CALL modbus_write_bit(modbus_t *ctx, int addr, int status)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1279,7 +1279,7 @@ int modbus_write_bit(modbus_t *ctx, int addr, int status)
 }
 
 /* Writes a value in one register of the remote device */
-int modbus_write_register(modbus_t *ctx, int addr, const uint16_t value)
+int MODBUS_CALL modbus_write_register(modbus_t *ctx, int addr, const uint16_t value)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1290,7 +1290,7 @@ int modbus_write_register(modbus_t *ctx, int addr, const uint16_t value)
 }
 
 /* Write the bits of the array in the remote device */
-int modbus_write_bits(modbus_t *ctx, int addr, int nb, const uint8_t *src)
+int MODBUS_CALL modbus_write_bits(modbus_t *ctx, int addr, int nb, const uint8_t *src)
 {
     int rc;
     int i;
@@ -1353,7 +1353,7 @@ int modbus_write_bits(modbus_t *ctx, int addr, int nb, const uint8_t *src)
 }
 
 /* Write the values from the array to the registers of the remote device */
-int modbus_write_registers(modbus_t *ctx, int addr, int nb, const uint16_t *src)
+int MODBUS_CALL modbus_write_registers(modbus_t *ctx, int addr, int nb, const uint16_t *src)
 {
     int rc;
     int i;
@@ -1401,7 +1401,7 @@ int modbus_write_registers(modbus_t *ctx, int addr, int nb, const uint16_t *src)
     return rc;
 }
 
-int modbus_mask_write_register(modbus_t *ctx, int addr, uint16_t and_mask, uint16_t or_mask)
+int MODBUS_CALL modbus_mask_write_register(modbus_t *ctx, int addr, uint16_t and_mask, uint16_t or_mask)
 {
     int rc;
     int req_length;
@@ -1439,7 +1439,7 @@ int modbus_mask_write_register(modbus_t *ctx, int addr, uint16_t and_mask, uint1
 
 /* Write multiple registers from src array to remote device and read multiple
    registers from remote device to dest array. */
-int modbus_write_and_read_registers(modbus_t *ctx,
+int MODBUS_CALL modbus_write_and_read_registers(modbus_t *ctx,
                                     int write_addr, int write_nb,
                                     const uint16_t *src,
                                     int read_addr, int read_nb,
@@ -1518,7 +1518,7 @@ int modbus_write_and_read_registers(modbus_t *ctx,
 
 /* Send a request to get the slave ID of the device (only available in serial
    communication). */
-int modbus_report_slave_id(modbus_t *ctx, int max_dest, uint8_t *dest)
+int MODBUS_CALL modbus_report_slave_id(modbus_t *ctx, int max_dest, uint8_t *dest)
 {
     int rc;
     int req_length;
@@ -1581,7 +1581,7 @@ void _modbus_init_common(modbus_t *ctx)
 }
 
 /* Define the slave number */
-int modbus_set_slave(modbus_t *ctx, int slave)
+int MODBUS_CALL modbus_set_slave(modbus_t *ctx, int slave)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1591,7 +1591,7 @@ int modbus_set_slave(modbus_t *ctx, int slave)
     return ctx->backend->set_slave(ctx, slave);
 }
 
-int modbus_get_slave(modbus_t *ctx)
+int MODBUS_CALL modbus_get_slave(modbus_t *ctx)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1601,7 +1601,7 @@ int modbus_get_slave(modbus_t *ctx)
     return ctx->slave;
 }
 
-int modbus_set_error_recovery(modbus_t *ctx,
+int MODBUS_CALL modbus_set_error_recovery(modbus_t *ctx,
                               modbus_error_recovery_mode error_recovery)
 {
     if (ctx == NULL) {
@@ -1614,7 +1614,7 @@ int modbus_set_error_recovery(modbus_t *ctx,
     return 0;
 }
 
-int modbus_set_socket(modbus_t *ctx, int s)
+int MODBUS_CALL modbus_set_socket(modbus_t *ctx, int s)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1625,7 +1625,7 @@ int modbus_set_socket(modbus_t *ctx, int s)
     return 0;
 }
 
-int modbus_get_socket(modbus_t *ctx)
+int MODBUS_CALL modbus_get_socket(modbus_t *ctx)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1636,7 +1636,7 @@ int modbus_get_socket(modbus_t *ctx)
 }
 
 /* Get the timeout interval used to wait for a response */
-int modbus_get_response_timeout(modbus_t *ctx, uint32_t *to_sec, uint32_t *to_usec)
+int MODBUS_CALL modbus_get_response_timeout(modbus_t *ctx, uint32_t *to_sec, uint32_t *to_usec)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1648,7 +1648,7 @@ int modbus_get_response_timeout(modbus_t *ctx, uint32_t *to_sec, uint32_t *to_us
     return 0;
 }
 
-int modbus_set_response_timeout(modbus_t *ctx, uint32_t to_sec, uint32_t to_usec)
+int MODBUS_CALL modbus_set_response_timeout(modbus_t *ctx, uint32_t to_sec, uint32_t to_usec)
 {
     if (ctx == NULL ||
         (to_sec == 0 && to_usec == 0) || to_usec > 999999) {
@@ -1662,7 +1662,7 @@ int modbus_set_response_timeout(modbus_t *ctx, uint32_t to_sec, uint32_t to_usec
 }
 
 /* Get the timeout interval between two consecutive bytes of a message */
-int modbus_get_byte_timeout(modbus_t *ctx, uint32_t *to_sec, uint32_t *to_usec)
+int MODBUS_CALL modbus_get_byte_timeout(modbus_t *ctx, uint32_t *to_sec, uint32_t *to_usec)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1674,7 +1674,7 @@ int modbus_get_byte_timeout(modbus_t *ctx, uint32_t *to_sec, uint32_t *to_usec)
     return 0;
 }
 
-int modbus_set_byte_timeout(modbus_t *ctx, uint32_t to_sec, uint32_t to_usec)
+int MODBUS_CALL modbus_set_byte_timeout(modbus_t *ctx, uint32_t to_sec, uint32_t to_usec)
 {
     /* Byte timeout can be disabled when both values are zero */
     if (ctx == NULL || to_usec > 999999) {
@@ -1688,7 +1688,7 @@ int modbus_set_byte_timeout(modbus_t *ctx, uint32_t to_sec, uint32_t to_usec)
 }
 
 /* Get the timeout interval used by the server to wait for an indication from a client */
-int modbus_get_indication_timeout(modbus_t *ctx, uint32_t *to_sec, uint32_t *to_usec)
+int MODBUS_CALL modbus_get_indication_timeout(modbus_t *ctx, uint32_t *to_sec, uint32_t *to_usec)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1700,7 +1700,7 @@ int modbus_get_indication_timeout(modbus_t *ctx, uint32_t *to_sec, uint32_t *to_
     return 0;
 }
 
-int modbus_set_indication_timeout(modbus_t *ctx, uint32_t to_sec, uint32_t to_usec)
+int MODBUS_CALL modbus_set_indication_timeout(modbus_t *ctx, uint32_t to_sec, uint32_t to_usec)
 {
     /* Indication timeout can be disabled when both values are zero */
     if (ctx == NULL || to_usec > 999999) {
@@ -1713,7 +1713,7 @@ int modbus_set_indication_timeout(modbus_t *ctx, uint32_t to_sec, uint32_t to_us
     return 0;
 }
 
-int modbus_get_header_length(modbus_t *ctx)
+int MODBUS_CALL modbus_get_header_length(modbus_t *ctx)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1723,7 +1723,7 @@ int modbus_get_header_length(modbus_t *ctx)
     return ctx->backend->header_length;
 }
 
-int modbus_connect(modbus_t *ctx)
+int MODBUS_CALL modbus_connect(modbus_t *ctx)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1733,7 +1733,7 @@ int modbus_connect(modbus_t *ctx)
     return ctx->backend->connect(ctx);
 }
 
-void modbus_close(modbus_t *ctx)
+void MODBUS_CALL modbus_close(modbus_t *ctx)
 {
     if (ctx == NULL)
         return;
@@ -1741,7 +1741,7 @@ void modbus_close(modbus_t *ctx)
     ctx->backend->close(ctx);
 }
 
-void modbus_free(modbus_t *ctx)
+void MODBUS_CALL modbus_free(modbus_t *ctx)
 {
     if (ctx == NULL)
         return;
@@ -1749,7 +1749,7 @@ void modbus_free(modbus_t *ctx)
     ctx->backend->free(ctx);
 }
 
-int modbus_set_debug(modbus_t *ctx, int flag)
+int MODBUS_CALL modbus_set_debug(modbus_t *ctx, int flag)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1766,7 +1766,7 @@ int modbus_set_debug(modbus_t *ctx, int flag)
    The modbus_mapping_new_start_address() function shall return the new allocated
    structure if successful. Otherwise it shall return NULL and set errno to
    ENOMEM. */
-modbus_mapping_t* modbus_mapping_new_start_address(
+modbus_mapping_t* MODBUS_CALL modbus_mapping_new_start_address(
     unsigned int start_bits, unsigned int nb_bits,
     unsigned int start_input_bits, unsigned int nb_input_bits,
     unsigned int start_registers, unsigned int nb_registers,
@@ -1850,7 +1850,7 @@ modbus_mapping_t* modbus_mapping_new_start_address(
     return mb_mapping;
 }
 
-modbus_mapping_t* modbus_mapping_new(int nb_bits, int nb_input_bits,
+modbus_mapping_t* MODBUS_CALL modbus_mapping_new(int nb_bits, int nb_input_bits,
                                      int nb_registers, int nb_input_registers)
 {
     return modbus_mapping_new_start_address(
@@ -1858,7 +1858,7 @@ modbus_mapping_t* modbus_mapping_new(int nb_bits, int nb_input_bits,
 }
 
 /* Frees the 4 arrays */
-void modbus_mapping_free(modbus_mapping_t *mb_mapping)
+void MODBUS_CALL modbus_mapping_free(modbus_mapping_t *mb_mapping)
 {
     if (mb_mapping == NULL) {
         return;
