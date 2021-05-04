@@ -488,7 +488,7 @@ static int _modbus_tcp_flush(modbus_t *ctx)
 }
 
 /* Listens for any request from one or many modbus masters in TCP */
-int modbus_tcp_listen(modbus_t *ctx, int nb_connection)
+int MODBUS_CALL modbus_tcp_listen(modbus_t *ctx, int nb_connection)
 {
     int new_s;
     int enable;
@@ -551,7 +551,7 @@ int modbus_tcp_listen(modbus_t *ctx, int nb_connection)
     return new_s;
 }
 
-int modbus_tcp_pi_listen(modbus_t *ctx, int nb_connection)
+int MODBUS_CALL modbus_tcp_pi_listen(modbus_t *ctx, int nb_connection)
 {
 
 #ifdef LIBMODBUS_HAVE_MODBUS_TCP_PI
@@ -672,7 +672,7 @@ int modbus_tcp_pi_listen(modbus_t *ctx, int nb_connection)
 #endif
 }
 
-int modbus_tcp_accept(modbus_t *ctx, int *s)
+int MODBUS_CALL modbus_tcp_accept(modbus_t *ctx, int *s)
 {
     struct sockaddr_in addr;
     socklen_t addrlen;
@@ -702,7 +702,7 @@ int modbus_tcp_accept(modbus_t *ctx, int *s)
     return ctx->s;
 }
 
-int modbus_tcp_pi_accept(modbus_t *ctx, int *s)
+int MODBUS_CALL modbus_tcp_pi_accept(modbus_t *ctx, int *s)
 {
 #if defined(VC6_BUILD)
     struct sockaddr addr;
@@ -810,7 +810,7 @@ const modbus_backend_t _modbus_tcp_pi_backend = {
     _modbus_tcp_free
 };
 
-modbus_t* modbus_new_tcp(const char *ip, int port)
+modbus_t* MODBUS_CALL modbus_new_tcp(const char *ip, int port)
 {
     modbus_t *ctx;
     modbus_tcp_t *ctx_tcp;
@@ -875,7 +875,7 @@ modbus_t* modbus_new_tcp(const char *ip, int port)
 }
 
 
-modbus_t* modbus_new_tcp_pi(const char *node, const char *service)
+modbus_t* MODBUS_CALL modbus_new_tcp_pi(const char *node, const char *service)
 {
     modbus_t *ctx;
     modbus_tcp_pi_t *ctx_tcp_pi;

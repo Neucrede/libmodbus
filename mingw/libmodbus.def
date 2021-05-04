@@ -8,68 +8,68 @@ EXPORTS
     libmodbus_version_major @7 DATA
     libmodbus_version_micro @8 DATA
     libmodbus_version_minor @9 DATA
-    modbus_close = modbus_close@4 @10
-    modbus_connect = modbus_connect@4 @11
-    modbus_flush = modbus_flush@4 @12
-    modbus_free = modbus_free@4 @13
-    modbus_get_byte_from_bits = modbus_get_byte_from_bits@12 @14
-    modbus_get_byte_timeout = modbus_get_byte_timeout@12 @15
-    modbus_get_float = modbus_get_float@4 @16
-    modbus_get_float_abcd = modbus_get_float_abcd@4 @17
-    modbus_get_float_badc = modbus_get_float_badc@4 @18
-    modbus_get_float_cdab = modbus_get_float_cdab@4 @19
-    modbus_get_float_dcba = modbus_get_float_dcba@4 @20
-    modbus_get_header_length = modbus_get_header_length@4 @21
-    modbus_get_indication_timeout = modbus_get_indication_timeout@12 @22
-    modbus_get_response_timeout = modbus_get_response_timeout@12 @23
-    modbus_get_slave = modbus_get_slave@4 @24
-    modbus_get_socket = modbus_get_socket@4 @25
-    modbus_mapping_free = modbus_mapping_free@4 @26
-    modbus_mapping_new = modbus_mapping_new@16 @27
-    modbus_mapping_new_start_address = modbus_mapping_new_start_address@32 @28
-    modbus_mask_write_register = modbus_mask_write_register@16 @29
-    modbus_new_rtu = modbus_new_rtu@20 @30
-    modbus_new_tcp = modbus_new_tcp@8 @31
-    modbus_new_tcp_pi = modbus_new_tcp_pi@8 @32
-    modbus_read_bits = modbus_read_bits@16 @33
-    modbus_read_input_bits = modbus_read_input_bits@16 @34
-    modbus_read_input_registers = modbus_read_input_registers@16 @35
-    modbus_read_registers = modbus_read_registers@16 @36
-    modbus_receive = modbus_receive@8 @37
-    modbus_receive_confirmation = modbus_receive_confirmation@8 @38
-    modbus_reply = modbus_reply@16 @39
-    modbus_reply_exception = modbus_reply_exception@12 @40
-    modbus_report_slave_id = modbus_report_slave_id@12 @41
-    modbus_rtu_get_rts = modbus_rtu_get_rts@4 @42
-    modbus_rtu_get_rts_delay = modbus_rtu_get_rts_delay@4 @43
-    modbus_rtu_get_serial_mode = modbus_rtu_get_serial_mode@4 @44
-    modbus_rtu_set_custom_rts = modbus_rtu_set_custom_rts@8 @45
-    modbus_rtu_set_rts = modbus_rtu_set_rts@8 @46
-    modbus_rtu_set_rts_delay = modbus_rtu_set_rts_delay@8 @47
-    modbus_rtu_set_serial_mode = modbus_rtu_set_serial_mode@8 @48
-    modbus_send_raw_request = modbus_send_raw_request@12 @49
-    modbus_set_bits_from_byte = modbus_set_bits_from_byte@12 @50
-    modbus_set_bits_from_bytes = modbus_set_bits_from_bytes@16 @51
-    modbus_set_byte_timeout = modbus_set_byte_timeout@12 @52
-    modbus_set_debug = modbus_set_debug@8 @53
-    modbus_set_error_recovery = modbus_set_error_recovery@8 @54
-    modbus_set_float = modbus_set_float@8 @55
-    modbus_set_float_abcd = modbus_set_float_abcd@8 @56
-    modbus_set_float_badc = modbus_set_float_badc@8 @57
-    modbus_set_float_cdab = modbus_set_float_cdab@8 @58
-    modbus_set_float_dcba = modbus_set_float_dcba@8 @59
-    modbus_set_indication_timeout = modbus_set_indication_timeout@12 @60
-    modbus_set_response_timeout = modbus_set_response_timeout@12 @61
-    modbus_set_slave = modbus_set_slave@8 @62
-    modbus_set_socket = modbus_set_socket@8 @63
-    modbus_strerror = modbus_strerror@4 @64
-    modbus_tcp_accept = modbus_tcp_accept@8 @65
-    modbus_tcp_listen = modbus_tcp_listen@8 @66
-    modbus_tcp_pi_accept = modbus_tcp_pi_accept@8 @67
-    modbus_tcp_pi_listen = modbus_tcp_pi_listen@8 @68
-    modbus_write_and_read_registers = modbus_write_and_read_registers@28 @69
-    modbus_write_bit = modbus_write_bit@12 @70
-    modbus_write_bits = modbus_write_bits@16 @71
-    modbus_write_register = modbus_write_register@12 @72
-    modbus_write_registers = modbus_write_registers@16 @73
+    modbus_close@4 @10
+    modbus_connect@4 @11
+    modbus_flush@4 @12
+    modbus_free@4 @13
+    modbus_get_byte_from_bits@12 @14
+    modbus_get_byte_timeout@12 @15
+    modbus_get_float@4 @16
+    modbus_get_float_abcd@4 @17
+    modbus_get_float_badc@4 @18
+    modbus_get_float_cdab@4 @19
+    modbus_get_float_dcba@4 @20
+    modbus_get_header_length@4 @21
+    modbus_get_indication_timeout@12 @22
+    modbus_get_response_timeout@12 @23
+    modbus_get_slave@4 @24
+    modbus_get_socket@4 @25
+    modbus_mapping_free@4 @26
+    modbus_mapping_new@16 @27
+    modbus_mapping_new_start_address@32 @28
+    modbus_mask_write_register@16 @29
+    modbus_new_rtu@20 @30
+    modbus_new_tcp@8 @31
+    modbus_new_tcp_pi@8 @32
+    modbus_read_bits@16 @33
+    modbus_read_input_bits@16 @34
+    modbus_read_input_registers@16 @35
+    modbus_read_registers@16 @36
+    modbus_receive@8 @37
+    modbus_receive_confirmation@8 @38
+    modbus_reply@16 @39
+    modbus_reply_exception@12 @40
+    modbus_report_slave_id@12 @41
+    modbus_rtu_get_rts@4 @42
+    modbus_rtu_get_rts_delay@4 @43
+    modbus_rtu_get_serial_mode@4 @44
+    modbus_rtu_set_custom_rts@8 @45
+    modbus_rtu_set_rts@8 @46
+    modbus_rtu_set_rts_delay@8 @47
+    modbus_rtu_set_serial_mode@8 @48
+    modbus_send_raw_request@12 @49
+    modbus_set_bits_from_byte@12 @50
+    modbus_set_bits_from_bytes@16 @51
+    modbus_set_byte_timeout@12 @52
+    modbus_set_debug@8 @53
+    modbus_set_error_recovery@8 @54
+    modbus_set_float@8 @55
+    modbus_set_float_abcd@8 @56
+    modbus_set_float_badc@8 @57
+    modbus_set_float_cdab@8 @58
+    modbus_set_float_dcba@8 @59
+    modbus_set_indication_timeout@12 @60
+    modbus_set_response_timeout@12 @61
+    modbus_set_slave@8 @62
+    modbus_set_socket@8 @63
+    modbus_strerror@4 @64
+    modbus_tcp_accept@8 @65
+    modbus_tcp_listen@8 @66
+    modbus_tcp_pi_accept@8 @67
+    modbus_tcp_pi_listen@8 @68
+    modbus_write_and_read_registers@28 @69
+    modbus_write_bit@12 @70
+    modbus_write_bits@16 @71
+    modbus_write_register@12 @72
+    modbus_write_registers@16 @73
     strlcpy @74

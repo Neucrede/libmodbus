@@ -1,4 +1,6 @@
 OUT = libmodbus.dll
+DEFFILE = libmodbus.def
+IMPLIB = libmodbus.a
 OUTDIR = ./out
 OBJDIR = ./obj
 DEPDIR = ./deps
@@ -9,7 +11,7 @@ OBJS = $(addprefix $(OBJDIR)/, $(patsubst %.c, %.o, $(notdir $(SOURCES))))
 DEPS = $(addprefix $(DEPDIR)/, $(patsubst %.c, %.d, $(notdir $(SOURCES))))
 CC = gcc
 CCFLAGS = -Wall -fPIC $(INCDIRS)
-LDFLAGS = --shared -Wl,--kill-at,--output-def,libmodbus.def,--out-implib,libmodbus.a -lwsock32 -lws2_32
+LDFLAGS = --shared -lwsock32 -lws2_32
 
 INCLUDE_DEPS = 0
 
@@ -26,11 +28,16 @@ release : INCLUDE_DEPS = 1
 release : CCFLAGS += -O2
 
 main : $(OUT) $(OUTA)
-	dlltool -d libmodbus.def --dllname libmodbus.dll --output-lib libmodbus.lib --kill-at
 
-$(OUT) : $(OBJS)
-	$(CC) -o $(OUT) $(OBJS) $(LDFLAGS)
-	
+$(OUT) : $(OBJS) $(DEFFILE)
+	$(CC) -o $(OUT) $(OBJS) $(LDFLAGS) -Wl,--kill-at
+
+$(IMPLIB) : $(DEFFILE)
+	dlltool -d $(DEFFILE) --dllname $(OUT) --output-lib $(IMPLIB) --kill-at
+
+$(DEFFILE) : $(OBJS)
+	$(CC) -o $(OUT) $(OBJS) $(LDFLAGS) -Wl,--output-def,$(DEFFILE)
+
 $(OUTA) : $(OBJS)
 	$(AR) $(ARFLAGS) $@ $(OBJS)
 

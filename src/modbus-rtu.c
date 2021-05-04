@@ -898,7 +898,7 @@ static int _modbus_rtu_connect(modbus_t *ctx)
     return 0;
 }
 
-int modbus_rtu_set_serial_mode(modbus_t *ctx, int mode)
+int MODBUS_CALL modbus_rtu_set_serial_mode(modbus_t *ctx, int mode)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -952,7 +952,7 @@ int modbus_rtu_set_serial_mode(modbus_t *ctx, int mode)
     return -1;
 }
 
-int modbus_rtu_get_serial_mode(modbus_t *ctx)
+int MODBUS_CALL modbus_rtu_get_serial_mode(modbus_t *ctx)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -976,7 +976,7 @@ int modbus_rtu_get_serial_mode(modbus_t *ctx)
     }
 }
 
-int modbus_rtu_get_rts(modbus_t *ctx)
+int MODBUS_CALL modbus_rtu_get_rts(modbus_t *ctx)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1000,7 +1000,7 @@ int modbus_rtu_get_rts(modbus_t *ctx)
     }
 }
 
-int modbus_rtu_set_rts(modbus_t *ctx, int mode)
+int MODBUS_CALL modbus_rtu_set_rts(modbus_t *ctx, int mode)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1036,7 +1036,7 @@ int modbus_rtu_set_rts(modbus_t *ctx, int mode)
     return -1;
 }
 
-int modbus_rtu_set_custom_rts(modbus_t *ctx, void (*set_rts) (modbus_t *ctx, int on))
+int MODBUS_CALL modbus_rtu_set_custom_rts(modbus_t *ctx, void (*set_rts) (modbus_t *ctx, int on))
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1061,7 +1061,7 @@ int modbus_rtu_set_custom_rts(modbus_t *ctx, void (*set_rts) (modbus_t *ctx, int
     }
 }
 
-int modbus_rtu_get_rts_delay(modbus_t *ctx)
+int MODBUS_CALL modbus_rtu_get_rts_delay(modbus_t *ctx)
 {
     if (ctx == NULL) {
         errno = EINVAL;
@@ -1086,7 +1086,7 @@ int modbus_rtu_get_rts_delay(modbus_t *ctx)
     }
 }
 
-int modbus_rtu_set_rts_delay(modbus_t *ctx, int us)
+int MODBUS_CALL modbus_rtu_set_rts_delay(modbus_t *ctx, int us)
 {
     if (ctx == NULL || us < 0) {
         errno = EINVAL;
@@ -1218,7 +1218,7 @@ const modbus_backend_t _modbus_rtu_backend = {
     _modbus_rtu_free
 };
 
-modbus_t* modbus_new_rtu(const char *device,
+modbus_t* MODBUS_CALL modbus_new_rtu(const char *device,
                          int baud, char parity, int data_bit,
                          int stop_bit)
 {
