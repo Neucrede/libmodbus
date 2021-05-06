@@ -29,7 +29,7 @@ release : CCFLAGS += -O2
 
 main : $(OUT) $(OUTA)
 
-$(OUT) : $(OBJS) $(DEFFILE)
+$(OUT) : $(OBJS) $(IMPLIB)
 	$(CC) -o $(OUT) $(OBJS) $(LDFLAGS) -Wl,--kill-at
 
 $(IMPLIB) : $(DEFFILE)
